@@ -1,0 +1,33 @@
+syntax = "proto3"; 
+package MyServer;
+
+option csharp_namespace = "MyServer.Protocol";
+
+enum PacketId {
+  PID_NONE = 0;
+  // 구글이 이걸 C#의 "CLoginRequest"로 자동 변환해줍니다.
+  C_LOGIN_REQUEST = 1;
+  S_LOGIN_RESPONSE = 2;
+  C_CHAT = 3;
+  S_CHAT = 4;
+}
+
+message CLoginRequest {
+  int64 player_id = 1;
+  string name = 2;
+  string token = 3;
+}
+
+message SLoginResponse {
+  bool success = 1;
+  int64 my_player_id = 2;
+}
+
+message CChat {
+  string message = 1;
+}
+
+message SChat {
+  int64 player_id = 1;
+  string message = 2;
+}
